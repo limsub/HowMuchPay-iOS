@@ -84,6 +84,18 @@ extension FriendVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        guard let item = reactor?.currentState.itemList[indexPath.row] else { return }
+//        
+//        let reactor = FriendHistoryVM(friendId: item.partner.id)
+//        let vc = FriendHistoryPopupVC(reactor)
+//        
+//        vc.modalPresentationStyle = .overFullScreen
+//        vc.modalTransitionStyle = .crossDissolve
+//        
+//        present(vc, animated: true)
+//    }
 }
 
 
@@ -92,6 +104,13 @@ extension FriendVC {
     private func setTableView() {
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
+        
+        // 26.04.08.
+        // App store feedback applied
+        // : add a footer view to resolve overlap between the x button and plus button
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 60))
+        footerView.backgroundColor = .clear
+        mainView.tableView.tableFooterView = footerView
     }
     
     private func loadData() {
